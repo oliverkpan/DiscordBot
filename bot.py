@@ -1,10 +1,43 @@
 import discord #Import Module
+import random
 from discord.ext import commands
 
-client = commands.Bot(command_prefix = '.')
+jarvis = commands.Bot(command_prefix = '!')
 
-@client.event
+#Bot is ready to go
+@jarvis.event
 async def on_ready():
     print("Jarvis is ready")
 
-client.run('')
+#User has joined server
+@jarvis.event
+async def on_member_join(member):
+    print(f'(member) has joined.')
+
+#User has left server
+@jarvis.event
+async def on_member_remove(member):
+    print(f'(member) has left.')
+
+#Ping Test
+@jarvis.command()
+async def speed(ctx):
+    await ctx.send(f'I am {round(jarvis.latency * 1000)}ms fast')
+
+#8 Ball Feature
+@jarvis.command(aliases=['8ball'])
+async def eight_ball(ctx, *, question):
+    responses = ['It is certain.',
+                 'It is decidedly so.',
+                 'Without a doubt.',
+                 'Nah.',
+                 'Ehhhh....maybe.',
+                 'Oh no brother.',
+                 'I say no.',
+                 'Very doubtful.',
+                 'Looks good.',
+                 'Please try again.',
+                 'I really cannot say.']
+    await ctx.send(f'Question: {question}\nAnswer: {random.choice(responses)}')
+
+jarvis.run('')
