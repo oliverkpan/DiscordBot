@@ -1,4 +1,4 @@
-# DiscordBot
+# JarvisBot
 
 Will be creating a Discord Bot using Python.
 
