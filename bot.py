@@ -40,4 +40,19 @@ async def eight_ball(ctx, *, question):
                  'I really cannot say.']
     await ctx.send(f'Question: {question}\nAnswer: {random.choice(responses)}')
 
+#Clear Messages
+@jarvis.command()
+async def clear(ctx, amount=2):
+    await ctx.channel.purge(limit=amount)
+
+#Kick Member
+@jarvis.command()
+async def kick(ctx, member : discord.Member, *, reason=None):
+    await member.kick(reason=reason)
+
+#Ban Member
+@jarvis.command()
+async def ban(ctx, member : discord.Member, *, reason=None):
+    await member.ban(reason=reason)
+
 jarvis.run('')
