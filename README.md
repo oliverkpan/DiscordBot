@@ -1,6 +1,7 @@
 # JarvisBot
 
-Will be creating a Discord Bot using Python.
+#### About
+I created a Discord Bot, called Jarvis using the discord library. Jarvis moderates my personal Discord Server and can assist with administrative issues. 
 
 
 ## Acknowledgements
