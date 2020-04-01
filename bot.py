@@ -49,10 +49,27 @@ async def clear(ctx, amount=2):
 @jarvis.command()
 async def kick(ctx, member : discord.Member, *, reason=None):
     await member.kick(reason=reason)
+    await ctx.send(f'Kicked {member.mention}')
 
 #Ban Member
 @jarvis.command()
 async def ban(ctx, member : discord.Member, *, reason=None):
     await member.ban(reason=reason)
+    await ctx.send(f'Banned {member.mention}')
+
+#Unban Member
+@jarvis.command()
+async def unban(ctx, *, member):
+    banned = await ctx.guild.bans() #list of baned entry in server
+    member_name, member_discriminator = member.split('#')
+
+    for entry in banned:
+        user = entry.user
+
+        if(user.name, user.discriminator) == (member_name, member_discriminator):
+            await ctx.guild.unban(user)
+            await ctx.send(f'Unbanned {user.name}#{user.discriminator}')
+            return
+
 
 jarvis.run('')
