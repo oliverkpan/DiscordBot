@@ -71,5 +71,18 @@ async def unban(ctx, *, member):
             await ctx.send(f'Unbanned {user.name}#{user.discriminator}')
             return
 
+#COGS Load
+@jarvis.command()
+async def load(ctx, extension): #Extension is COG
+    jarvis.load_extension(f'COGS.{extension})
+
+#COGS Unload
+@jarvis.command()
+async def unload(ctx, extension): #Extension is COG
+    jarvis.unload_extension(f'COGS.{extension})
+
+for filename in os.listdir('./COGS'):
+    if filename.endswith('.py'):
+        jarvis.load_extension(f'COGS.{filename[:-3]}') #cut .py
 
 jarvis.run('')
