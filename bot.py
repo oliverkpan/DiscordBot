@@ -1,4 +1,5 @@
 import discord #Import Module
+import os
 import random
 from discord.ext import commands
 
@@ -60,7 +61,7 @@ async def ban(ctx, member : discord.Member, *, reason=None):
 #Unban Member
 @jarvis.command()
 async def unban(ctx, *, member):
-    banned = await ctx.guild.bans() #list of baned entry in server
+    banned = await ctx.guild.bans() #list of banned entry in server
     member_name, member_discriminator = member.split('#')
 
     for entry in banned:
@@ -71,18 +72,18 @@ async def unban(ctx, *, member):
             await ctx.send(f'Unbanned {user.name}#{user.discriminator}')
             return
 
-#COGS Load
+#cogs Load
 @jarvis.command()
 async def load(ctx, extension): #Extension is COG
-    jarvis.load_extension(f'COGS.{extension})
+    jarvis.load_extension(f'cogs.{extension}')
 
-#COGS Unload
+#cogs Unload
 @jarvis.command()
 async def unload(ctx, extension): #Extension is COG
-    jarvis.unload_extension(f'COGS.{extension})
+    jarvis.unload_extension(f'cogs.{extension}')
 
-for filename in os.listdir('./COGS'):
+for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
-        jarvis.load_extension(f'COGS.{filename[:-3]}') #cut .py
+        jarvis.load_extension(f'cogs.{filename[:-3]}') #cut .py
 
 jarvis.run('')
