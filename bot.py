@@ -82,6 +82,12 @@ async def load(ctx, extension): #Extension is COG
 async def unload(ctx, extension): #Extension is COG
     jarvis.unload_extension(f'cogs.{extension}')
 
+#cogs Reload
+@jarvis.command()
+async def reload(ctx, extension):
+    jarvis.unload_extension(f'cogs.{extension}')
+    jarvis.load_extension(f'cogs.{extension}')
+
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
         jarvis.load_extension(f'cogs.{filename[:-3]}') #cut .py
