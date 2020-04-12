@@ -1,13 +1,18 @@
 import discord #Import Module
 import os
 import random
-from discord.ext import commands
+from discord.ext import commands, tasks
+from itertools import cycle
 
 jarvis = commands.Bot(command_prefix = '!')
+status = cycele(['League of Legends', 'Legends of Runeterra', 'Valorant'])
 
 #Bot is ready to go
 @jarvis.event
 async def on_ready():
+    await jarvis.change_presence(status=discord.Status.idle, activity=discord.Game('TFT'))
+    #Change status
+    #change_status.start()
     print("Jarvis is ready")
 
 #User has joined server
@@ -82,14 +87,19 @@ async def load(ctx, extension): #Extension is COG
 async def unload(ctx, extension): #Extension is COG
     jarvis.unload_extension(f'cogs.{extension}')
 
-#cogs Reload
 @jarvis.command()
 async def reload(ctx, extension):
     jarvis.unload_extension(f'cogs.{extension}')
     jarvis.load_extension(f'cogs.{extension}')
 
+
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
         jarvis.load_extension(f'cogs.{filename[:-3]}') #cut .py
+
+@tasks.loop(seconds=10000)
+async def change_status():
+    await client.change_presence(activity=discord.Game(next(status)))
+
 
 jarvis.run('')
