@@ -1,7 +1,7 @@
 # JarvisBot
 
 #### About
-I created a Discord Bot, called Jarvis using the Discord library. Jarvis moderates my personal Discord Server and can assist with administrative issues. 
+I created a Discord Bot, called Jarvis using the Discord library. Jarvis moderates my personal Discord Server and can assist with administrative issues. I created various commands that can ensure maintenance in the server. Basic commands are below but I am consistently updating this, so more commands will be updated.
 
 #### Commands
 
@@ -12,6 +12,10 @@ I created a Discord Bot, called Jarvis using the Discord library. Jarvis moderat
 !Ban - Ban user
 
 !Unban - Remove user from ban list
+
+!Load - Loads in command from cogs
+
+!Unload - Unload command from cogs
 
 
 ## Acknowledgements
