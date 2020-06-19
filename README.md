@@ -17,6 +17,9 @@ I created a Discord Bot, called Jarvis using the Discord library. Jarvis moderat
 
 !Unload - Unload command from cogs
 
+#### Learning Outcomes
+From this project, I was able to create a bot that responds to commands. I learned how to use various Python libraries and further my understanding of object oriented programming.
+
 
 ## Acknowledgements
 
